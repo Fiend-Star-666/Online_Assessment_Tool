@@ -1,5 +1,6 @@
 package com.training.java.controllers;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,69 +9,70 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.training.java.entities.Student;
 import com.training.java.repositories.StudentRepository;
 import com.training.java.services.serviceImpl.DisplayTableImpl;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
+@RequestMapping("/api")
 public class StudentController {
 
 	@Autowired
 	StudentRepository studentRepo;
-	
+
 	@Autowired
 	DisplayTableImpl displayTableImpl;
-	
+
 	@GetMapping("/student")
-	public String getAllStudentsPage(
-	    @RequestParam(required = false) String string,
-	    @RequestParam(defaultValue = "0") int page,
-	    @RequestParam(defaultValue = "3") int size,
-	    @RequestParam(defaultValue = "id") String sortBy,
-	    @RequestParam(defaultValue = "asc") String sortDirection,
-	    Model model) {
-	    try {
-	        Sort.Direction direction = sortDirection.equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
-	        Pageable pagingSort = PageRequest.of(page, size, direction, sortBy);
+	public ResponseEntity<Map<String, Object>> getAllStudentsPage(
+			@RequestParam(required = false) String string,
+			@RequestParam(defaultValue = "0") int page,
+			@RequestParam(defaultValue = "3") int size,
+			@RequestParam(defaultValue = "id") String sortBy,
+			@RequestParam(defaultValue = "asc") String sortDirection) {
+		Map<String, Object> response = new HashMap<>();
+		try {
+			Sort.Direction direction = sortDirection.equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
+			Pageable pagingSort = PageRequest.of(page, size, direction, sortBy);
 
-	        Page<Student> pageStudents;
+			Page<Student> pageStudents;
 
-	        if (string == null) {
-	            pageStudents = studentRepo.findAll(pagingSort);
-	        } else {
-	            pageStudents = studentRepo.findByNameIgnoreCaseContaining(string, pagingSort);
-	        }
+			if (string == null) {
+				pageStudents = studentRepo.findAll(pagingSort);
+			} else {
+				pageStudents = studentRepo.findByNameIgnoreCaseContaining(string, pagingSort);
+			}
 
-	        List<Student> students = pageStudents.getContent();
+			List<Student> students = pageStudents.getContent();
 
-	        if (students.isEmpty()) {
-	            model.addAttribute("errorMessage", "No students found.");
-	            return "error-page";
-	        }
-	        
-	        
-	        Map<Student, String> formattedDates = displayTableImpl.formatDates(students);
+			if (students.isEmpty()) {
+				response.put("errorMessage", "No students found.");
+				return ResponseEntity.notFound().build();
+			}
 
-	        model.addAttribute("formattedDates", formattedDates);
-	        model.addAttribute("students", students);
-	        model.addAttribute("currentPage", pageStudents.getNumber());
-	        model.addAttribute("totalItems", pageStudents.getTotalElements());
-	        model.addAttribute("totalPages", pageStudents.getTotalPages());
-	        model.addAttribute("pageSize", size);
-	        model.addAttribute("sortBy", sortBy);
-	        model.addAttribute("sortDirection", sortDirection);
+			Map<Student, String> formattedDates = displayTableImpl.formatDates(students);
 
-	        return "student-list";
+			response.put("formattedDates", formattedDates);
+			response.put("students", students);
+			response.put("currentPage", pageStudents.getNumber());
+			response.put("totalItems", pageStudents.getTotalElements());
+			response.put("totalPages", pageStudents.getTotalPages());
+			response.put("pageSize", size);
+			response.put("sortBy", sortBy);
+			response.put("sortDirection", sortDirection);
 
-	    } catch (Exception e) {
-	        model.addAttribute("errorMessage", "An error occurred while retrieving students: " + e.getMessage());
-	        return "error-page";
-	    }
+			return ResponseEntity.ok(response);
+
+		} catch (Exception e) {
+			response.put("errorMessage", "An error occurred while retrieving students: " + e.getMessage());
+			return ResponseEntity.status(500).body(response);
+		}
 	}
 
 }

@@ -6,60 +6,44 @@ import com.training.java.entities.enums.StreamOfStudents;
 import com.training.java.services.DisplayTableService;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
+@RequestMapping("/students")
 public class DisplayTableController {
 
     @Autowired
     private DisplayTableService displayTableService;
 
-    @GetMapping("/students")
-    public String showAllStudents(Model model) {
-    	
+    @GetMapping
+    public ResponseEntity<List<Student>> showAllStudents() {
         List<Student> students = displayTableService.getAllStudents();
-        
-        Map<Student, String> formattedDates = displayTableService.formatDates(students);
-
-        model.addAttribute("formattedDates", formattedDates);
-        model.addAttribute("students", students);
-
-        return "display";
+        return new ResponseEntity<>(students, HttpStatus.OK);
     }
 
-    @GetMapping("/students/edit/{id}")
-    public String editStudent(@PathVariable int id, Model model) {
-    	
+    @GetMapping("/edit/{id}")
+    public ResponseEntity<Student> editStudent(@PathVariable int id) {
         Student student = displayTableService.getStudentById(id);
-
         if (student != null) {
-            model.addAttribute("student", student);
-            model.addAttribute("streams", StreamOfStudents.values()); 
-            model.addAttribute("states", StatesOfIndia.values()); 
-            return "edit-student";
+            return new ResponseEntity<>(student, HttpStatus.OK);
         } else {
-            return "redirect:/students";
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-    @PostMapping("/students/edit/{id}")
-    public String updateStudent(@PathVariable int id, @ModelAttribute Student updatedStudent) {
+    @PutMapping("/edit/{id}")
+    public ResponseEntity<Void> updateStudent(@PathVariable int id, @RequestBody Student updatedStudent) {
         displayTableService.updateStudent(id, updatedStudent);
-        return "redirect:/students";
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PostMapping("/students/delete/{id}")
-    public String deleteStudent(@PathVariable int id) {
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteStudent(@PathVariable int id) {
         displayTableService.deleteStudent(id);
-        return "redirect:/students";
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
 }

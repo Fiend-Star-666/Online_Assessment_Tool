@@ -2,32 +2,39 @@ package com.training.java.controllers;
 
 import com.training.java.entities.Student;
 import com.training.java.services.RegistrationService;
-
 import com.training.java.entities.enums.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+import java.util.HashMap;
+import java.util.Map;
+
+@RestController
+@RequestMapping("/register")
 public class RegistrationController {
 
     @Autowired
     private RegistrationService registrationService;
 
-    @GetMapping("/register")
-    public String showRegistrationsForm(Model model){
-        model.addAttribute("student", new Student());
-        model.addAttribute("states", StatesOfIndia.values());
-        model.addAttribute("streams", StreamOfStudents.values());
-        return "registration";
+    @GetMapping
+    public ResponseEntity<Map<String, Object>> showRegistrationsForm(){
+        Map<String, Object> response = new HashMap<>();
+        response.put("student", new Student());
+        response.put("states", StatesOfIndia.values());
+        response.put("streams", StreamOfStudents.values());
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PostMapping("/register")
-    public String registerStudent(Student student){
+
+    @PostMapping
+    public ResponseEntity<String> registerStudent(Student student){
         registrationService.registerStudent(student);
-        return "redirect:/register?success";
+        return new ResponseEntity<>("redirect:/register?success", HttpStatus.CREATED);
     }
 }

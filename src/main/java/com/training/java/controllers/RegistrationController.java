@@ -1,6 +1,6 @@
 package com.training.java.controllers;
 
-import com.training.java.entities.Student;
+import com.training.java.entities.User;
 import com.training.java.services.RegistrationService;
 import com.training.java.entities.enums.*;
 
@@ -25,16 +25,16 @@ public class RegistrationController {
     @GetMapping
     public ResponseEntity<Map<String, Object>> showRegistrationsForm(){
         Map<String, Object> response = new HashMap<>();
-        response.put("student", new Student());
-        response.put("states", StatesOfIndia.values());
-        response.put("streams", StreamOfStudents.values());
+        response.put("user", new User());
+        response.put("states", StatesOfIndiaEnum.values());
+        response.put("streams", QualificationsEnum.values());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 
     @PostMapping
-    public ResponseEntity<String> registerStudent(Student student){
-        registrationService.registerStudent(student);
+    public ResponseEntity<String> registerUser(User user){
+        registrationService.registerUser(user);
         return new ResponseEntity<>("redirect:/register?success", HttpStatus.CREATED);
     }
 }

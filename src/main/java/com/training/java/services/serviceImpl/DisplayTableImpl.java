@@ -1,7 +1,7 @@
 package com.training.java.services.serviceImpl;
 
-import com.training.java.entities.Student;
-import com.training.java.repositories.StudentRepository;
+import com.training.java.entities.User;
+import com.training.java.repositories.UserRepository;
 import com.training.java.services.DisplayTableService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,48 +16,48 @@ import java.util.Map;
 public class DisplayTableImpl implements DisplayTableService {
 
     @Autowired
-    private StudentRepository studentRepository;
+    private UserRepository userRepository;
 
     @Override
-    public List<Student> getAllStudents() {
-        return studentRepository.findAll();
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 
     @Override
-    public Map<Student, String> formatDates(List<Student> students) {
+    public Map<User, String> formatDates(List<User> users) {
     	SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        Map<Student, String> formattedDates = new HashMap<>();
-        for (Student student : students) {
-            String formattedDateOfBirth = formatter.format(student.getDateOfBirth());
-            formattedDates.put(student, formattedDateOfBirth);
+        Map<User, String> formattedDates = new HashMap<>();
+        for (User user : users) {
+            String formattedDateOfBirth = formatter.format(user.getDateOfBirth());
+            formattedDates.put(user, formattedDateOfBirth);
         }
         return formattedDates;
     }
 
     @Override
-    public Student getStudentById(int id) {
-        return studentRepository.findById(id).orElse(null);
+    public User getUserById(int id) {
+        return userRepository.findById(id).orElse(null);
     }
 
     @Override
-    public void deleteStudent(int id) {
-        studentRepository.deleteById(id);
+    public void deleteUser(int id) {
+        userRepository.deleteById(id);
     }
 
     @Override
-    public void updateStudent(int id, Student updatedStudent) {
-    	System.out.println(updatedStudent);
-        Student existingStudent = studentRepository.findById(id).orElse(null);
+    public void updateUser(int id, User updatedUser) {
+    	System.out.println(updatedUser);
+        User existingUser = userRepository.findById(id).orElse(null);
         
-        if (existingStudent != null) {
-            existingStudent.setName(updatedStudent.getName());
-            existingStudent.setDateOfBirth(updatedStudent.getDateOfBirth());
-            existingStudent.setAdhaarCardNumber(updatedStudent.getAdhaarCardNumber());
-            existingStudent.setCity(updatedStudent.getCity());
-            existingStudent.setLanguagesKnown(updatedStudent.getLanguagesKnown());
-            existingStudent.setStream(updatedStudent.getStream());
-            existingStudent.setState(updatedStudent.getState());
-            studentRepository.save(existingStudent);
+        if (existingUser != null) {
+            existingUser.setName(updatedUser.getName());
+            existingUser.setDateOfBirth(updatedUser.getDateOfBirth());
+            //TODO: Add the rest of the fields
+            existingUser.setCity(updatedUser.getCity());
+
+
+            existingUser.setState(updatedUser.getState());
+            userRepository.save(existingUser);
         }
     }
 	

@@ -1,4 +1,4 @@
-INSERT INTO student (id, name, date_Of_Birth, adhaar_Card_Number, city, stream, state)
+INSERT INTO user (id, name, date_Of_Birth, adhaar_Card_Number, city, stream, state)
 VALUES
     (1, 'Rahul Sharma', '1995-06-15', 123456789011, 'Mumbai', 0, 13),
     (2, 'Priya Patel', '1998-02-22', 987654321098, 'Delhi', 1, 30),
@@ -16,7 +16,7 @@ VALUES
     (14, 'Sneha Mehta', '1995-09-17', 901234567890, 'Chandigarh', 1, 5),
     (15, 'Sanjay Kumar', '1997-02-14', 345678901234, 'Guwahati', 0, 2);
 
-INSERT INTO student_languages (student_id, language)
+INSERT INTO user_languages (user_id, language)
 VALUES
     (1, 'Java'),
     (1, 'Python'),

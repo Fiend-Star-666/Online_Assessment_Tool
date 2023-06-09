@@ -1,14 +1,14 @@
 package com.training.java.services;
 
-import com.training.java.entities.Student;
+import com.training.java.entities.User;
 
 import java.util.List;
 import java.util.Map;
 
 public interface DisplayTableService {
-    List<Student> getAllStudents();
-    Map<Student, String> formatDates(List<Student> students);
-	Student getStudentById(int id);
-	void deleteStudent(int id);
-	void updateStudent(int id, Student updatedStudent);
+    List<User> getAllUsers();
+    Map<User, String> formatDates(List<User> users);
+	User getUserById(int id);
+	void deleteUser(int id);
+	void updateUser(int id, User updatedUser);
 }

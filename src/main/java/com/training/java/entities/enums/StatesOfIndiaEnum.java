@@ -1,6 +1,6 @@
 package com.training.java.entities.enums;
 
-public enum StatesOfIndia {
+public enum StatesOfIndiaEnum {
 
         Andhra_Pradesh,
         Arunachal_Pradesh,

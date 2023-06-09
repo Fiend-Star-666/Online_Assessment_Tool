@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Edit Student</title>
+    <title>Edit User</title>
     <style>
         table {
             border-collapse: collapse;
@@ -47,38 +47,38 @@
     </style>
 </head>
 <body>
-    <h1>Edit Student</h1>
-    <form:form action="/students/edit/${student.id}" method="post" modelAttribute="student" onsubmit="return validateForm()">
+    <h1>Edit User</h1>
+    <form:form action="/users/edit/${user.id}" method="post" modelAttribute="user" onsubmit="return validateForm()">
         <table>
             <tr>
                 <td><label>Name:</label></td>
-                <td><form:input path="name" id="name" value="${student.name}" /></td>
+                <td><form:input path="name" id="name" value="${user.name}" /></td>
             </tr>
             <tr>
                 <td><label>Date of Birth:</label></td>
                 <td>
-                    <fmt:formatDate var="formattedDate" value="${student.dateOfBirth}" pattern="yyyy-MM-dd" />
+                    <fmt:formatDate var="formattedDate" value="${user.dateOfBirth}" pattern="yyyy-MM-dd" />
                     <input type="date" name="dateOfBirth" id="dateOfBirth" value="${formattedDate}">
                 </td>
             </tr>
             <tr>
                 <td><label>Aadhaar Card Number:</label></td>
-                <td><form:input path="adhaarCardNumber" id="adhaarCardNumber" value="${student.adhaarCardNumber}" /></td>
+                <td><form:input path="adhaarCardNumber" id="adhaarCardNumber" value="${user.adhaarCardNumber}" /></td>
             </tr>
             <tr>
                 <td><label>City:</label></td>
-                <td><form:input path="city" id="city" value="${student.city}" /></td>
+                <td><form:input path="city" id="city" value="${user.city}" /></td>
             </tr>
             <tr>
                 <td><label>Languages Known:</label></td>
-                <td><form:input path="languagesKnown" id="languagesKnown" value="${student.languagesKnown.toString().replace('[', '').replace(']', '')}" /></td>
+                <td><form:input path="languagesKnown" id="languagesKnown" value="${user.languagesKnown.toString().replace('[', '').replace(']', '')}" /></td>
             </tr>
             <tr>
                 <td><label>Stream:</label></td>
                 <td>
                     <form:select path="stream">
                         <c:forEach items="${streams}" var="stream">
-                            <option value="${stream}" ${stream == student.stream ? 'selected' : ''}>${stream}</option>
+                            <option value="${stream}" ${stream == user.stream ? 'selected' : ''}>${stream}</option>
                         </c:forEach>
                     </form:select>
                 </td>
@@ -88,7 +88,7 @@
                 <td>
                     <form:select path="state">
                         <c:forEach items="${states}" var="state">
-                            <option value="${state}" ${state == student.state ? 'selected' : ''}>${state}</option>
+                            <option value="${state}" ${state == user.state ? 'selected' : ''}>${state}</option>
                         </c:forEach>
                     </form:select>
                 </td>

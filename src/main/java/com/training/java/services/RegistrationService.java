@@ -1,7 +1,7 @@
 package com.training.java.services;
 
-import com.training.java.entities.Student;
+import com.training.java.entities.User;
 
 public interface RegistrationService {
-    Student registerStudent(Student student);
+    User registerUser(User user);
 }

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Student Registration</title>
+    <title>User Registration</title>
     <style>
         table {
             border-collapse: collapse;
@@ -37,10 +37,10 @@
     </script>
 </head>
 <body>
-    <h2>Student Registration:</h2>
+    <h2>User Registration:</h2>
     <label>Kindly input the Languages Known in a comma-separated list.</label>
     <br><br>
-    <form:form method="POST" action="/register" modelAttribute="student" onsubmit="return validateForm()">
+    <form:form method="POST" action="/register" modelAttribute="user" onsubmit="return validateForm()">
         <table>
             <tr>
                 <td><label>Name:</label></td>

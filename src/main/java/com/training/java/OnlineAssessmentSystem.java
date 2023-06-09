@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PersonSystemApplication {
+public class OnlineAssessmentSystem {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PersonSystemApplication.class, args);
+		SpringApplication.run(OnlineAssessmentSystem.class, args);
 	}
 
 }

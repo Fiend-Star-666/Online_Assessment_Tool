@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>All Students with pagination</title>
+    <title>All Users with pagination</title>
     <style>
         table {
             border-collapse: collapse;
@@ -16,9 +16,9 @@
     </style>
 </head>
 <body>
-    <h1>All Students</h1>
+    <h1>All Users</h1>
 
-    <form action="/student" method="GET">
+    <form action="/user" method="GET">
         <label>Search Name:</label>
         <input type="text" name="string" value="${param.string}">
         <input type="submit" value="Search">
@@ -54,23 +54,23 @@
             <th>Edit</th>
             <th>Delete</th>
         </tr>
-        <c:forEach var="student" items="${students}">
+        <c:forEach var="user" items="${users}">
             <tr>
-                <td>${student.id}</td>
-                <td>${student.name}</td>
-                <td>${formattedDates[student]}</td>
-                <td>${student.adhaarCardNumber}</td>
-                <td>${student.city}</td>
+                <td>${user.id}</td>
+                <td>${user.name}</td>
+                <td>${formattedDates[user]}</td>
+                <td>${user.adhaarCardNumber}</td>
+                <td>${user.city}</td>
                 <td>
-                    <c:forEach var="language" items="${student.languagesKnown}">
+                    <c:forEach var="language" items="${user.languagesKnown}">
                         ${language}<br>
                     </c:forEach>
                 </td>
-                <td>${student.stream}</td>
-                <td>${student.state}</td>
-                <td><a href="/students/edit/${student.id}">Edit</a></td>
+                <td>${user.stream}</td>
+                <td>${user.state}</td>
+                <td><a href="/users/edit/${user.id}">Edit</a></td>
                 <td>
-                    <form action="/students/delete/${student.id}" method="post">
+                    <form action="/users/delete/${user.id}" method="post">
                         <input type="submit" value="Delete">
                     </form>
                 </td>
@@ -80,7 +80,7 @@
 
     <div>
         <c:if test="${currentPage > 0}">
-            <a href="/student?page=${currentPage - 1}&string=${param.string}&size=${pageSize}&sortBy=${param.sortBy}&sortDirection=${param.sortDirection}">Previous</a>
+            <a href="/user?page=${currentPage - 1}&string=${param.string}&size=${pageSize}&sortBy=${param.sortBy}&sortDirection=${param.sortDirection}">Previous</a>
         </c:if>
 
         <c:forEach var="i" begin="0" end="${totalPages - 1}">
@@ -89,13 +89,13 @@
                     <strong>${i + 1}</strong>
                 </c:when>
                 <c:otherwise>
-                    <a href="/student?page=${i}&string=${param.string}&size=${pageSize}&sortBy=${param.sortBy}&sortDirection=${param.sortDirection}">${i + 1}</a>
+                    <a href="/user?page=${i}&string=${param.string}&size=${pageSize}&sortBy=${param.sortBy}&sortDirection=${param.sortDirection}">${i + 1}</a>
                 </c:otherwise>
             </c:choose>
         </c:forEach>
 
         <c:if test="${currentPage < totalPages - 1}">
-            <a href="/student?page=${currentPage + 1}&string=${param.string}&size=${pageSize}&sortBy=${param.sortBy}&sortDirection=${param.sortDirection}">Next</a>
+            <a href="/user?page=${currentPage + 1}&string=${param.string}&size=${pageSize}&sortBy=${param.sortBy}&sortDirection=${param.sortDirection}">Next</a>
         </c:if>
     </div>
 </body>

@@ -16,6 +16,7 @@ VALUES
     (14, 'Sneha Mehta', '1995-09-17', 901234567890, 'Chandigarh', 1, 5),
     (15, 'Sanjay Kumar', '1997-02-14', 345678901234, 'Guwahati', 0, 2);
 
+
 INSERT INTO user_languages (user_id, language)
 VALUES
     (1, 'Java'),

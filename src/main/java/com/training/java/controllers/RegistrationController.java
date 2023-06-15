@@ -1,9 +1,9 @@
 package com.training.java.controllers;
 
 import com.training.java.entities.Account;
+import com.training.java.entities.enums.QualificationsEnum;
+import com.training.java.entities.enums.StatesOfIndiaEnum;
 import com.training.java.services.RegistrationService;
-import com.training.java.entities.enums.*;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

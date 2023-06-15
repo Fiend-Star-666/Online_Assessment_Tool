@@ -3,7 +3,6 @@ package com.training.java.security;
 
 import com.training.java.security.jwt.AuthEntryPointJwt;
 import com.training.java.security.jwt.AuthTokenFilter;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

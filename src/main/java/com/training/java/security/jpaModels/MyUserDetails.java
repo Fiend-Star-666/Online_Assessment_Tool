@@ -2,11 +2,11 @@ package com.training.java.security.jpaModels;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.training.java.entities.Account;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.Collection;
 import java.util.List;

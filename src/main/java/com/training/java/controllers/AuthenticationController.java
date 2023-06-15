@@ -1,7 +1,7 @@
 package com.training.java.controllers;
 
-import com.training.java.entities.Role;
 import com.training.java.entities.Account;
+import com.training.java.entities.Role;
 import com.training.java.entities.enums.ERole;
 import com.training.java.payload.request.LoginRequest;
 import com.training.java.payload.request.SignupRequest;
@@ -21,7 +21,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashSet;

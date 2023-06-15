@@ -1,6 +1,5 @@
 package com.training.java.entities;
 
-import com.training.java.entities.Role;
 import com.training.java.entities.enums.CodingLanguageEnum;
 import com.training.java.entities.enums.QualificationsEnum;
 import com.training.java.entities.enums.StatesOfIndiaEnum;

@@ -1,11 +1,8 @@
 package com.training.java.controllers;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.training.java.entities.Account;
 import com.training.java.repositories.AccountRepository;
+import com.training.java.services.serviceImpl.DisplayTableImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,9 +12,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import com.training.java.services.serviceImpl.DisplayTableImpl;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")

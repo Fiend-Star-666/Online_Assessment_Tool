@@ -46,7 +46,7 @@ public class UserController {
 			if (string == null) {
 				pageUsers = userRepo.findAll(pagingSort);
 			} else {
-				pageUsers = userRepo.findByNameIgnoreCaseContaining(string, (java.awt.print.Pageable) pagingSort);
+				pageUsers = userRepo.findByNameIgnoreCaseContaining(string, pagingSort);
 			}
 
 			List<Account> users = pageUsers.getContent();

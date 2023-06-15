@@ -1,6 +1,9 @@
 package com.training.java.security;
 
 
+import com.training.java.security.jwt.AuthEntryPointJwt;
+import com.training.java.security.jwt.AuthTokenFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,33 +16,36 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.stereotype.Service;
 
-
-import java.util.Set;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 @EnableMethodSecurity
+@Service
 public class SecurityConfiguration {
 
-    @Value("${spring.security.user.name}")
-    private String userName;
+    @Autowired
+    UserDetailsService userDetailsService;
 
-    @Value("${spring.security.user.password}")
-    private String userPassword;
 
-    @Value("${spring.security.user.roles}")
-    private Set<String> roles;  // Use Set instead of String[]
+    @Autowired
+    private AuthEntryPointJwt unauthorizedHandler;
+
     private AuthenticationManagerBuilder authManagerBuilder;
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public AuthTokenFilter authenticationJwtTokenFilter() {
+        return new AuthTokenFilter();
+    }
+    @Bean
+    public static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
     public void authenticationManagerBuilder(UserDetailsService userDetailsService) throws Exception {
-        this.authManagerBuilder = new AuthenticationManagerBuilder((ObjectPostProcessor<Object>) userDetailsService);
+        this.authManagerBuilder = new AuthenticationManagerBuilder(userDetailsService);
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         authManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
     }
@@ -52,11 +58,14 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/**").hasRole("USER")
                 )
-                .formLogin(withDefaults())
+                .formLogin((form) -> form
+                .loginPage("/login")
+                .permitAll()
+                 )
+                .logout((logout) -> logout.permitAll())
                 .httpBasic(withDefaults());
         return http.build();
     }

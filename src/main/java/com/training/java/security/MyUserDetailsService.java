@@ -23,7 +23,6 @@ public class MyUserDetailsService implements UserDetailsService {
         System.out.println("loadbyusername in myuserdetailsService user: "+user);
 
         if(user==null){
-
             throw new UsernameNotFoundException("Not found : " + emailId);
         }
 

@@ -28,10 +28,11 @@ public class MyUserDetails implements UserDetails{
         this.emailId = user.getEmail();
         this.password=user.getPassword();
         this.accId=user.getId();
+        System.out.println("MyUserDetails constructor user: "+user);
         this.authorities = user.getSecurityRoles().stream()
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toSet());
-
+        System.out.println("MyUserDetails constructor authorities: "+authorities);
     }
 
     @Override

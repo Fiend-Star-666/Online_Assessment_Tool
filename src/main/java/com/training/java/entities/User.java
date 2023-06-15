@@ -27,7 +27,7 @@ public class User extends Account {
     @Column(name = "levels_passed", nullable = true, columnDefinition = "int default 0")
     private int levelsPassed;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @MapKeyEnumerated(EnumType.STRING)
     @MapKeyColumn(name = "coding_language")
     @Column(name = "levels_passed_per_language")

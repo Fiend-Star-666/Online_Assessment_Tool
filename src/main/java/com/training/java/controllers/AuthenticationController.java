@@ -8,6 +8,7 @@ import com.training.java.security.payload.JwtResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import com.training.java.security.SecurityConfiguration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,14 +24,11 @@ import java.util.stream.Collectors;
 @RestController
 public class AuthenticationController {
 
-    //@Autowired
-    //AuthenticationManager authenticationManager;
+    @Autowired
+    AuthenticationManager authenticationManager;
 
     @Autowired
     AccountRepository accountRepo;
-
-    //@Autowired
-   // PasswordEncoder encoder;
 
     @Autowired
     JwtUtils jwtUtils;
@@ -39,31 +37,31 @@ public class AuthenticationController {
     @Autowired
     private MyUserDetailsService userDetailsService;
 
-    //@CrossOrigin
+
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@RequestBody Map<String,String> Payload ) {
-        String emailId=(String)Payload.get("email");
+        String emailId= Payload.get("email");
 
-        String password=(String)Payload.get("password");
-
-        /*
+        String password= Payload.get("password");
+        System.out.println("step1");
+        AuthenticationManager authenticationManager = null;
+        System.out.println("step2");
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(emailId,password));
-
+        System.out.println("step3");
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
+        System.out.println("step4");
         String jwt = jwtUtils.generateJwtToken(authentication);
-
-        MyUserDetails userDetails = (MyUserDetails) authentication.getPrincipal();*/
-
-       /* List<String> roles = userDetails.getAuthorities().stream()
+        System.out.println("step5");
+        MyUserDetails userDetails = (MyUserDetails) authentication.getPrincipal();
+        System.out.println("step6");
+       List<String> roles = userDetails.getAuthorities().stream()
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
-
+        System.out.println("step7");
         return ResponseEntity.ok(new JwtResponse(jwt,
                 userDetails.getType(),
                 userDetails.getAccId(),
                 userDetails.getUsername(),
-                roles));*/
-        return null;
+                roles));
     }
 }

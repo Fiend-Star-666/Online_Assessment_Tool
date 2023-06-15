@@ -21,7 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableMethodSecurity
-public class SecurityConfiguration {
+public class WebSecurityConfiguration {
 
     @Autowired
     UserDetailsService userDetailsService;
@@ -62,8 +62,10 @@ public class SecurityConfiguration {
             .exceptionHandling( exception -> exception.authenticationEntryPoint(unauthorizedHandler))
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize ->
-                        authorize.requestMatchers("/auth/**").permitAll()
+                        authorize.requestMatchers("/**").permitAll()
                                 .requestMatchers("/test/**").permitAll()
+                                .requestMatchers("/api/**").permitAll()
+                                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                                 .anyRequest().authenticated()
                 );
 

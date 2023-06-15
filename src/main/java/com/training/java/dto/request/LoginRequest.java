@@ -1,4 +1,4 @@
-package com.training.java.payload.request;
+package com.training.java.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;

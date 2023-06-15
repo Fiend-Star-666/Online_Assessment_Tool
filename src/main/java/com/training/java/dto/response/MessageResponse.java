@@ -1,4 +1,4 @@
-package com.training.java.payload.response;
+package com.training.java.dto.response;
 
 
 public class MessageResponse {

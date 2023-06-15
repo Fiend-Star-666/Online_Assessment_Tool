@@ -1,0 +1,17 @@
+Language,LevelOfQuestion,Question,Option A,Option B,Option C,Option D,Correct Answer
+JAVA,1,What is the full form of JVM?,Java Virtual Machine,Java Virtual Method,Java Visual Machine,Java Variable Machine,A
+JAVA,1,Which of the following is not a Java primitive data type?,byte,int,boolean,character,C
+JAVA,1,What is the purpose of the 'final' keyword in Java?,To declare a constant,To define a class,To handle exceptions,To specify the superclass,A
+JAVA,1,What is the output of the following code? System.out.println(5 / 2);,2,2.5,2.0,Compilation error,A
+JAVA,1,What is the purpose of the 'static' keyword in Java?,It indicates that a variable or method belongs to the class,It specifies the access level of a variable or method,It indicates that a class cannot be inherited,It indicates that a class can be instantiated,A
+JAVA,2,What is the output of the following code? int x = 5; int y = 2; System.out.println(x % y);,1,2,2.5,Compilation error,A
+JAVA,2,What is the purpose of the 'try-catch' block in Java?,To handle exceptions,To define a loop,To define a class,To specify the superclass,A
+JAVA,2,Which of the following is not a Java access modifier?,public,protected,private,default,D
+JAVA,2,What is the output of the following code? System.out.println("Java".substring(1, 3));,av,va,v,av,B
+JAVA,2,What is the purpose of the 'instanceof' operator in Java?,To check if an object belongs to a specific class or its subclasses,To perform bitwise operations,To handle exceptions,To define a loop,A
+JAVA,3,What is the purpose of Java annotations?,Annotations provide metadata about a program,Annotations are used to declare variables,Annotations can be used to control program execution flow,Annotations are equivalent to comments,A
+JAVA,3,What is the output of the following code? String s = "Hello"; System.out.println(s.toUpperCase());,HELLO,hello,Hello,Compilation error,A
+JAVA,3,What is the purpose of the 'extends' keyword in Java?,To define a class that inherits from another class,To define an interface,To define a loop,To define a nested class,A
+JAVA,3,What is the output of the following code? int[] numbers = {1, 2, 3}; System.out.println(numbers.length);,3,1,2,Compilation error,A
+JAVA,3,What is the purpose of the 'super' keyword in Java?,To refer to the superclass,To define a loop,To handle exceptions,To define a nested class,A
+JAVA,3,What is the output of the following code? System.out.println(Math.pow(2, 3));,8,6,2.5,Compilation error,A

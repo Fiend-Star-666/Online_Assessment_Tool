@@ -1,4 +1,4 @@
-package com.training.java.payload.request;
+package com.training.java.dto.request;
 
 import com.training.java.entities.enums.QualificationsEnum;
 import com.training.java.entities.enums.StatesOfIndiaEnum;

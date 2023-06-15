@@ -1,0 +1,24 @@
+Language,LevelOfQuestion,Question,Option A,Option B,Option C,Option D,Correct Answer
+REACT,1,What is React?,A JavaScript library for building user interfaces,A programming language,A database management system,A server-side framework,B
+REACT,1,What is the purpose of JSX in React?,To write HTML-like code within JavaScript,To define CSS styles for React components,To interact with databases in React,To handle server-side requests in React,A
+REACT,1,What is the output of the following code? const element = <h1>Hello, World!</h1>; console.log(element.type);,h1,Hello, World!,element,undefined,A
+REACT,1,What is the purpose of the 'state' in React?,To manage component data and handle changes,To define component structure,To handle user interactions,To define component styles,A
+REACT,1,What is the output of the following code? const numbers = [1, 2, 3]; const doubled = numbers.map(num => num * 2); console.log(doubled);,[2, 4, 6],[1, 2, 3],6,undefined,A
+REACT,1,Which lifecycle method is invoked immediately after a component is added to the DOM?,componentDidMount,componentWillUnmount,componentWillMount,render,A
+REACT,1,What is the purpose of the 'props' in React?,To pass data from a parent component to a child component,To handle component state,To define component styles,To handle user interactions,A
+REACT,1,What is the output of the following code? const element = <h1>{2 + 2}</h1>; console.log(element.props.children);,4,h1,Hello, World!,undefined,A
+REACT,2,What is the purpose of React Router in React applications?,To handle routing and navigation,To manage component state,To define component styles,To handle user interactions,A
+REACT,2,What is the output of the following code? const numbers = [1, 2, 3]; const sum = numbers.reduce((total, num) => total + num, 0); console.log(sum);,6,1,2,3,A
+REACT,2,What is the purpose of the 'componentDidUpdate' lifecycle method in React?,To perform actions after a component's state or props have changed,To define component structure,To handle user interactions,To define component styles,A
+REACT,2,What is the output of the following code? const element = <input value="Hello" onChange={() => {}} />; console.log(element.props.value);,Hello,input,onChange,undefined,A
+REACT,2,What is the purpose of the 'useEffect' hook in React?,To perform side effects in functional components,To handle component state in functional components,To define component styles,To handle user interactions,A
+REACT,2,What is the output of the following code? const name = 'John'; const element = <h1>Hello, {name}</h1>; console.log(element.props.children);,Hello, John,h1,John,undefined,A
+REACT,2,What is the purpose of the 'useState' hook in React?,To manage component state in functional components,To handle user interactions,To define component styles,To define component structure,A
+REACT,2,What is the output of the following code? const element = <div className="red" style={{ color: 'blue' }}>Hello</div>; console.log(element.props.className);,red,blue,Hello,undefined,A
+REACT,3,What is the purpose of Redux in React applications?,To manage global state and state changes,To handle component state,To define component styles,To handle user interactions,A
+REACT,3,What is the output of the following code? const numbers = [1, 2, 3]; const isEven = numbers.every(num => num % 2 === 0); console.log(isEven);,false,true,[1, 2, 3],undefined,A
+REACT,3,What is the purpose of the 'componentWillUnmount' lifecycle method in React?,To perform cleanup actions before a component is removed from the DOM,To define component structure,To handle user interactions,To define component styles,A
+REACT,3,What is the output of the following code? const element = <input value="Hello" onChange={() => {}} />; console.log(element.props.onChange);,onChange,input,Hello,undefined,A
+REACT,3,What is the purpose of the 'useContext' hook in React?,To access the value of a context in functional components,To handle component state in functional components,To define component styles,To handle user interactions,A
+REACT,3,What is the output of the following code? const name = 'John'; const element = <h1>Hello, {name}</h1>; console.log(element.type);,h1,Hello, John,element,undefined,A
+REACT,3,What is the purpose of the 'useCallback' hook in React?,To memoize functions and optimize performance,To handle user interactions,To define component styles,To manage component state,A

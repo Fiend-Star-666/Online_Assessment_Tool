@@ -1,4 +1,4 @@
-package com.training.java.payload.response;
+package com.training.java.dto.response;
 
 import lombok.Getter;
 import lombok.Setter;

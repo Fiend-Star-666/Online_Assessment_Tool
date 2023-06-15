@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class HomeController {
 
-	@GetMapping
-	public ResponseEntity<String> showHomePage(){
-		return new ResponseEntity<>("home", HttpStatus.OK);
-	}
+    @GetMapping
+    public ResponseEntity<String> showHomePage() {
+        return new ResponseEntity<>("home", HttpStatus.OK);
+    }
 
 }

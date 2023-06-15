@@ -11,13 +11,16 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface AccountRepository extends JpaRepository<Account, Integer>{
+public interface AccountRepository extends JpaRepository<Account, Integer> {
     Optional<Account> findByEmail(String emailId);
 
     Boolean existsByEmail(String email);
 
     List<Account> findAllByName(String string);
+
     List<Account> findAllByNameIgnoreCase(String name);
+
     Page<Account> findByNameIgnoreCaseContaining(String string, Pageable pageable);
+
     List<Account> findByNameIgnoreCaseContaining(String string, Sort sort);
 }

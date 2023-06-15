@@ -23,7 +23,7 @@ public class RegistrationController {
     private RegistrationService registrationService;
 
     @GetMapping
-    public ResponseEntity<Map<String, Object>> showRegistrationsForm(){
+    public ResponseEntity<Map<String, Object>> showRegistrationsForm() {
         Map<String, Object> response = new HashMap<>();
         response.put("user", new Account());
         response.put("states", StatesOfIndiaEnum.values());
@@ -33,7 +33,7 @@ public class RegistrationController {
 
 
     @PostMapping
-    public ResponseEntity<String> registerUser(Account user){
+    public ResponseEntity<String> registerUser(Account user) {
         registrationService.registerUser(user);
         return new ResponseEntity<>("redirect:/register?success", HttpStatus.CREATED);
     }

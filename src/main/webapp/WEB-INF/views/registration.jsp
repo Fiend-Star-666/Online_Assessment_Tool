@@ -9,6 +9,7 @@
         table {
             border-collapse: collapse;
         }
+
         th, td {
             border: 1px solid black;
             padding: 8px;
@@ -37,54 +38,54 @@
     </script>
 </head>
 <body>
-    <h2>User Registration:</h2>
-    <label>Kindly input the Languages Known in a comma-separated list.</label>
-    <br><br>
-    <form:form method="POST" action="/register" modelAttribute="user" onsubmit="return validateForm()">
-        <table>
-            <tr>
-                <td><label>Name:</label></td>
-                <td><form:input path="name" required="true" /></td>
-            </tr>
-            <tr>
-                <td><label>Date of Birth:</label></td>
-                <td><input type="date" name="dateOfBirth" id="dateOfBirth" required="true" /></td>
-            </tr>
-            <tr>
-                <td><label>Aadhaar Card Number:</label></td>
-                <td><input type="text" name="adhaarCardNumber" id="adhaarCardNumber" required="true" /></td>
-            </tr>
-            <tr>
-                <td><label>State:</label></td>
-                <td>
-                    <form:select path="state">
-                        <c:forEach items="${states}" var="state">
-                            <option value="${state}">${state}</option>
-                        </c:forEach>
-                    </form:select>
-                </td>
-            </tr>
-            <tr>
-                <td><label>City:</label></td>
-                <td><form:input path="city" required="true" /></td>
-            </tr>
-            <tr>
-                <td><label>Languages Known:</label></td>
-                <td><input type="text" name="languagesKnown" id="languagesKnown" /></td>
-            </tr>
-            <tr>
-                <td><label>Stream:</label></td>
-                <td>
-                    <form:select path="stream">
-                        <c:forEach items="${streams}" var="stream">
-                            <option value="${stream}">${stream}</option>
-                        </c:forEach>
-                    </form:select>
-                </td>
-            </tr>
-        </table>
-        <br>
-        <button type="submit">Register</button>
-    </form:form>
+<h2>User Registration:</h2>
+<label>Kindly input the Languages Known in a comma-separated list.</label>
+<br><br>
+<form:form method="POST" action="/register" modelAttribute="user" onsubmit="return validateForm()">
+    <table>
+        <tr>
+            <td><label>Name:</label></td>
+            <td><form:input path="name" required="true"/></td>
+        </tr>
+        <tr>
+            <td><label>Date of Birth:</label></td>
+            <td><input type="date" name="dateOfBirth" id="dateOfBirth" required="true"/></td>
+        </tr>
+        <tr>
+            <td><label>Aadhaar Card Number:</label></td>
+            <td><input type="text" name="adhaarCardNumber" id="adhaarCardNumber" required="true"/></td>
+        </tr>
+        <tr>
+            <td><label>State:</label></td>
+            <td>
+                <form:select path="state">
+                    <c:forEach items="${states}" var="state">
+                        <option value="${state}">${state}</option>
+                    </c:forEach>
+                </form:select>
+            </td>
+        </tr>
+        <tr>
+            <td><label>City:</label></td>
+            <td><form:input path="city" required="true"/></td>
+        </tr>
+        <tr>
+            <td><label>Languages Known:</label></td>
+            <td><input type="text" name="languagesKnown" id="languagesKnown"/></td>
+        </tr>
+        <tr>
+            <td><label>Stream:</label></td>
+            <td>
+                <form:select path="stream">
+                    <c:forEach items="${streams}" var="stream">
+                        <option value="${stream}">${stream}</option>
+                    </c:forEach>
+                </form:select>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <button type="submit">Register</button>
+</form:form>
 </body>
 </html>

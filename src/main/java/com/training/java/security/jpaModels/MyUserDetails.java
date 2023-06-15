@@ -15,14 +15,14 @@ import java.util.stream.Collectors;
 
 @Getter
 @Setter
-public class MyUserDetails implements UserDetails{
+public class MyUserDetails implements UserDetails {
 
     private static final int serialVersionUID = 1;
 
     private int accId;
 
     private String emailId;
-    private String type="Bearer";
+    private String type = "Bearer";
 
     @JsonIgnore
     private String password;
@@ -32,9 +32,9 @@ public class MyUserDetails implements UserDetails{
 
     public MyUserDetails(int id, String email, String password,
                          Collection<? extends GrantedAuthority> authorities) {
-        this.accId=id;
+        this.accId = id;
         this.emailId = email;
-        this.password=password;
+        this.password = password;
         this.authorities = authorities;
     }
 

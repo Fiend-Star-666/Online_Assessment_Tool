@@ -19,12 +19,12 @@ public class DataLoader implements ApplicationRunner {
     }
 
     public void run(ApplicationArguments args) {
-        if(roleRepository.findByName(ERole.ROLE_USER).isEmpty()) {
+        if (roleRepository.findByName(ERole.ROLE_USER).isEmpty()) {
             Role userRole = new Role();
             userRole.setName(ERole.ROLE_USER);
             roleRepository.save(userRole);
         }
-        if(roleRepository.findByName(ERole.ROLE_ADMIN).isEmpty()) {
+        if (roleRepository.findByName(ERole.ROLE_ADMIN).isEmpty()) {
             Role adminRole = new Role();
             adminRole.setName(ERole.ROLE_ADMIN);
             roleRepository.save(adminRole);

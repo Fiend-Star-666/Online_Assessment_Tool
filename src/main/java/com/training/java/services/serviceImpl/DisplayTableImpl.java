@@ -24,7 +24,7 @@ public class DisplayTableImpl implements DisplayTableService {
 
     @Override
     public Map<Account, String> formatDates(List<Account> users) {
-    	SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         Map<Account, String> formattedDates = new HashMap<>();
         for (Account user : users) {
             String formattedDateOfBirth = formatter.format(user.getDateOfBirth());
@@ -45,9 +45,9 @@ public class DisplayTableImpl implements DisplayTableService {
 
     @Override
     public void updateUser(int id, Account updatedUser) {
-    	System.out.println(updatedUser);
+        System.out.println(updatedUser);
         Account existingUser = userRepository.findById(id).orElse(null);
-        
+
         if (existingUser != null) {
             existingUser.setName(updatedUser.getName());
             existingUser.setDateOfBirth(updatedUser.getDateOfBirth());
@@ -59,5 +59,5 @@ public class DisplayTableImpl implements DisplayTableService {
             userRepository.save(existingUser);
         }
     }
-	
+
 }

@@ -5,14 +5,14 @@
     <title>Error</title>
 </head>
 <body>
-    <h1>Error</h1>
-    <p>${errorMessage}</p>
-    <button onclick="goBack()">Go Back</button>
-    
-    <script>
-        function goBack() {
-            window.history.back();
-        }
-    </script>
+<h1>Error</h1>
+<p>${errorMessage}</p>
+<button onclick="goBack()">Go Back</button>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 </body>
 </html>

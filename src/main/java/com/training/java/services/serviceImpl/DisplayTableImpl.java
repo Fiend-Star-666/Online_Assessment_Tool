@@ -1,7 +1,7 @@
 package com.training.java.services.serviceImpl;
 
-import com.training.java.entities.User;
-import com.training.java.repositories.UserRepository;
+import com.training.java.entities.Account;
+import com.training.java.repositories.AccountRepository;
 import com.training.java.services.DisplayTableService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,18 +16,18 @@ import java.util.Map;
 public class DisplayTableImpl implements DisplayTableService {
 
     @Autowired
-    private UserRepository userRepository;
+    private AccountRepository userRepository;
 
     @Override
-    public List<User> getAllUsers() {
+    public List<Account> getAllUsers() {
         return userRepository.findAll();
     }
 
     @Override
-    public Map<User, String> formatDates(List<User> users) {
+    public Map<Account, String> formatDates(List<Account> users) {
     	SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        Map<User, String> formattedDates = new HashMap<>();
-        for (User user : users) {
+        Map<Account, String> formattedDates = new HashMap<>();
+        for (Account user : users) {
             String formattedDateOfBirth = formatter.format(user.getDateOfBirth());
             formattedDates.put(user, formattedDateOfBirth);
         }
@@ -35,7 +35,7 @@ public class DisplayTableImpl implements DisplayTableService {
     }
 
     @Override
-    public User getUserById(int id) {
+    public Account getUserById(int id) {
         return userRepository.findById(id).orElse(null);
     }
 
@@ -45,9 +45,9 @@ public class DisplayTableImpl implements DisplayTableService {
     }
 
     @Override
-    public void updateUser(int id, User updatedUser) {
+    public void updateUser(int id, Account updatedUser) {
     	System.out.println(updatedUser);
-        User existingUser = userRepository.findById(id).orElse(null);
+        Account existingUser = userRepository.findById(id).orElse(null);
         
         if (existingUser != null) {
             existingUser.setName(updatedUser.getName());

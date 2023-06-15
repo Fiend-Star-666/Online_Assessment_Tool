@@ -1,20 +1,20 @@
 package com.training.java.services.serviceImpl;
 
-import com.training.java.entities.User;
+import com.training.java.entities.Account;
+import com.training.java.repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.training.java.repositories.UserRepository;
 import com.training.java.services.RegistrationService;
 
 @Service
 public class RegistrationImpl implements RegistrationService {
 
     @Autowired
-    private UserRepository userRepository;
+    private AccountRepository userRepository;
 
     @Override
-    public User registerUser(User user) {
+    public Account registerUser(Account user) {
         return userRepository.save(user);
     }
 }

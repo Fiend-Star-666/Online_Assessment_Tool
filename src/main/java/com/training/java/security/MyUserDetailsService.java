@@ -1,8 +1,9 @@
 package com.training.java.security;
 
-import com.training.java.entities.abstrct.Account;
+import com.training.java.entities.Account;
 import com.training.java.repositories.AccountRepository;
 import com.training.java.security.jpaModels.MyUserDetails;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,16 +17,12 @@ public class MyUserDetailsService implements UserDetailsService {
     private AccountRepository accountRepository;
 
     @Override
+    @Transactional
     public UserDetails loadUserByUsername(String emailId) throws UsernameNotFoundException {
 
-        Account user = accountRepository.findByEmail(emailId);
+        Account user = accountRepository.findByEmail(emailId)
+                .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + emailId));
 
-        System.out.println("loadbyusername in myuserdetailsService user: "+user);
-
-        if(user==null){
-            throw new UsernameNotFoundException("Not found : " + emailId);
-        }
-
-        return new MyUserDetails(user);
+        return MyUserDetails.build(user);
     }
 }

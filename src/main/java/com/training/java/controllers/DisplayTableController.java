@@ -1,6 +1,6 @@
 package com.training.java.controllers;
 
-import com.training.java.entities.User;
+import com.training.java.entities.Account;
 import com.training.java.services.DisplayTableService;
 
 import java.util.List;
@@ -18,14 +18,14 @@ public class DisplayTableController {
     private DisplayTableService displayTableService;
 
     @GetMapping
-    public ResponseEntity<List<User>> showAllUsers() {
-        List<User> users = displayTableService.getAllUsers();
+    public ResponseEntity<List<Account>> showAllUsers() {
+        List<Account> users = displayTableService.getAllUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     @GetMapping("/edit/{id}")
-    public ResponseEntity<User> editUser(@PathVariable int id) {
-        User user = displayTableService.getUserById(id);
+    public ResponseEntity<Account> editUser(@PathVariable int id) {
+        Account user = displayTableService.getUserById(id);
         if (user != null) {
             return new ResponseEntity<>(user, HttpStatus.OK);
         } else {
@@ -34,7 +34,7 @@ public class DisplayTableController {
     }
 
     @PutMapping("/edit/{id}")
-    public ResponseEntity<Void> updateUser(@PathVariable int id, @RequestBody User updatedUser) {
+    public ResponseEntity<Void> updateUser(@PathVariable int id, @RequestBody Account updatedUser) {
         displayTableService.updateUser(id, updatedUser);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

@@ -1,6 +1,5 @@
 package com.training.java.security.jwt;
 
-import com.training.java.entities.abstrct.Account;
 import com.training.java.repositories.AccountRepository;
 import com.training.java.security.MyUserDetailsService;
 import jakarta.servlet.FilterChain;
@@ -37,44 +36,42 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         try {
-            System.out.println("step 0");
+
             String jwt = parseJwt(request);
-            System.out.println("step 0.1");
+
             if(jwt != null && jwtUtils.validateJwtToken(jwt)) {
-                System.out.println("step 0.2");
+
                 String emailId = jwtUtils.getUserNameFromJwtToken(jwt);
-                System.out.println("step 1.1");
-                Account user = accountRepo.findByEmail(emailId);
-                System.out.println("step 1.2");
+
                 UserDetails userDetails = userDetailsService.loadUserByUsername(emailId);
-                System.out.println("step 1.3");
+
                 UsernamePasswordAuthenticationToken authentication =
                         new UsernamePasswordAuthenticationToken(
-                                userDetails.getUsername(),
-                                userDetails.getPassword(),
+                                userDetails,
+                                null,
                                 userDetails.getAuthorities());
+
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                System.out.println("step 1.4");
+
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-                System.out.println("step 1.5");
+
             }
         } catch (Exception e) {
-            System.out.println("step 2.1");
+
             logger.error("Cannot set user authentication: {}", e);
         }
-        System.out.println("step 3.1");
+
         filterChain.doFilter(request, response);
     }
 
     private String parseJwt(HttpServletRequest request) {
-        System.out.println("step 4.1");
+
         String headerAuth = request.getHeader("Authorization");
-        System.out.println("step 4.2");
+
         if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer")) {
-            System.out.println("step 4.3");
-            return headerAuth.substring(7, headerAuth.length());
+            return headerAuth.substring(7);
         }
-        System.out.println("step 4.4");
+
         return null;
     }
 }

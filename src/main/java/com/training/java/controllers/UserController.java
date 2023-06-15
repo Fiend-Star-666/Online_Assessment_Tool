@@ -4,7 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.training.java.entities.User;
+import com.training.java.entities.Account;
+import com.training.java.repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.training.java.repositories.UserRepository;
 import com.training.java.services.serviceImpl.DisplayTableImpl;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
 	@Autowired
-	UserRepository userRepo;
+	AccountRepository userRepo;
 
 	@Autowired
 	DisplayTableImpl displayTableImpl;
@@ -41,22 +41,22 @@ public class UserController {
 			Sort.Direction direction = sortDirection.equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
 			Pageable pagingSort = PageRequest.of(page, size, direction, sortBy);
 
-			Page<User> pageUsers;
+			Page<Account> pageUsers;
 
 			if (string == null) {
 				pageUsers = userRepo.findAll(pagingSort);
 			} else {
-				pageUsers = userRepo.findByNameIgnoreCaseContaining(string, pagingSort);
+				pageUsers = userRepo.findByNameIgnoreCaseContaining(string, (java.awt.print.Pageable) pagingSort);
 			}
 
-			List<User> users = pageUsers.getContent();
+			List<Account> users = pageUsers.getContent();
 
 			if (users.isEmpty()) {
 				response.put("errorMessage", "No users found.");
 				return ResponseEntity.notFound().build();
 			}
 
-			Map<User, String> formattedDates = displayTableImpl.formatDates(users);
+			Map<Account, String> formattedDates = displayTableImpl.formatDates(users);
 
 			response.put("formattedDates", formattedDates);
 			response.put("users", users);

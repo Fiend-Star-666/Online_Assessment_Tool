@@ -51,6 +51,7 @@ public class CsvToQuestionnaire {
     }
 
     public List<QuestionDTO> getRandomQuestions(int numberOfQuestions) {
+
         List<Question> questions = questionRepository.findAll();
         List<QuestionDTO> questionDTOS = convertToQuestionDtoList(questions);
 

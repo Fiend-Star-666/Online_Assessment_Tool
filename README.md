@@ -12,7 +12,7 @@ Online Assessment Tool is a web-based application that allows companies and orga
 ## Technologies Used
 
 - Backend: Java, Spring Boot, Spring Security, JPA
-- Database: [Your Database]
+- Database: MySQL
 - Frontend: React, Redux, TypeScript
 
 ## Getting Started

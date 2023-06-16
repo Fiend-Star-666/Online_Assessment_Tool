@@ -7,6 +7,7 @@ import lombok.Data;
 @Table(name = "user_answers")
 @Data
 public class Answer {
+	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,4 +22,5 @@ public class Answer {
 
     @Column(name = "user_answer")
     private String userAnswer;
+
 }

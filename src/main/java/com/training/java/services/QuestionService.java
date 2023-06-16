@@ -14,10 +14,10 @@ public class QuestionService {
     private QuestionRepository questionRepository;
 
     public Optional<Question> findById(Long id) {
-        if(questionRepository.findById(id).isEmpty())
+        if (questionRepository.findById(id).isEmpty())
             throw new RuntimeException("Question not found");
         else
-        return questionRepository.findById(id);
+            return questionRepository.findById(id);
 
     }
 

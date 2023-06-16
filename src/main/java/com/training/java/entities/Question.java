@@ -27,20 +27,20 @@ public class Question {
     @Column(columnDefinition = "TEXT", name = "question")
     private String question;
 
-    @Column(columnDefinition = "TEXT" , name = "option_a")
+    @Column(columnDefinition = "TEXT", name = "option_a")
     private String optionA;
 
-    @Column(columnDefinition = "TEXT" , name = "option_b")
+    @Column(columnDefinition = "TEXT", name = "option_b")
     private String optionB;
 
-    @Column(columnDefinition = "TEXT" , name = "option_c")
+    @Column(columnDefinition = "TEXT", name = "option_c")
     private String optionC;
 
-    @Column(columnDefinition = "TEXT" , name = "option_d")
+    @Column(columnDefinition = "TEXT", name = "option_d")
     private String optionD;
 
     @NotBlank
-    @Column(columnDefinition = "TEXT" , name = "correct_answer")
+    @Column(columnDefinition = "TEXT", name = "correct_answer")
     private String correctAnswer;
 
 }

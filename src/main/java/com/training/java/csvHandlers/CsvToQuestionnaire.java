@@ -128,7 +128,7 @@ public class CsvToQuestionnaire {
         question.setOptionB(questionDto.getOptionB());
         question.setOptionC(questionDto.getOptionC());
         question.setOptionD(questionDto.getOptionD());
-        question.setCorrectAnswer(questionDto.getCorrectAnswer());
+        question.setCorrectAnswer(questionDto.getRealCorrectAnswer());
         return question;
     }
 

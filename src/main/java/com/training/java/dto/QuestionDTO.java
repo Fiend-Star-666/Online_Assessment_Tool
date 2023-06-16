@@ -4,9 +4,11 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class QuestionDTO {
 
     @NotBlank
@@ -21,5 +23,6 @@ public class QuestionDTO {
     private String optionC;
     private String optionD;
     @NotBlank
-    private String correctAnswer;
+    private String realCorrectAnswer;
+
 }

@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/v1/exams")
 public class ExamController {
 
     @Autowired
     private ExamService examService;
 
-    @PostMapping("/exams/start")
+    @PostMapping("/start")
     public ResponseEntity<String> startExam(@RequestParam("userId") Long userId, @RequestParam("level") int level) {
         boolean started = examService.startExam(userId, level);
 
@@ -27,7 +28,7 @@ public class ExamController {
         return ResponseEntity.ok("Exam started successfully.");
     }
 
-    @GetMapping("/exams/{examId}/report")
+    @GetMapping("/{examId}/report")
     public ResponseEntity<ExamReportDTO> getExamReport(@PathVariable("examId") Long examId) {
         ExamReportDTO reportDTO = examService.getExamReport(examId);
 
@@ -38,7 +39,7 @@ public class ExamController {
         return ResponseEntity.ok(reportDTO);
     }
 
-    @PostMapping("/exams/{examId}/submit")
+    @PostMapping("/{examId}/submit")
     public ResponseEntity<String> submitExam(@PathVariable("examId") Long examId, @RequestBody List<AnswerDTO> answerDTOs) {
         boolean submitted = examService.submitExam(examId, answerDTOs);
 

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.training.java.dto.ExamDTO;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/v1/users")
 public class UserControllers {
 
     @GetMapping("/{userId}/report")

@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/questions")
+@RequestMapping("/api/v1/questions")
 public class QuestionController {
 
     private final CsvToQuestionnaire csvToQuestionnaire;

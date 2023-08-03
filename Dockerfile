@@ -49,6 +49,8 @@ WORKDIR /app
 COPY --from=builder /app/ ./Back-end/
 COPY --from=frontend-builder /app/dist ./Front-end/Online-Assessment-Tool
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 # Update package lists, install supervisor, Node.js, nginx and clean up the cache
 RUN apt-get update && apt-get install -y supervisor curl apt-utils nginx  && rm -rf /var/lib/apt/lists/*
 

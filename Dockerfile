@@ -66,7 +66,7 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 EXPOSE 3000
-EXPOSE 9090
+#EXPOSE 9090
 
 # Run the applications using Supervisor
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

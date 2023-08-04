@@ -4,6 +4,9 @@ import com.training.java.dto.QuestionDTO;
 import com.training.java.entities.Question;
 import com.training.java.entities.enums.CodingLanguageEnum;
 import com.training.java.repositories.QuestionRepository;
+import com.training.java.security.jwt.AuthEntryPointJwt;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +16,9 @@ import java.util.*;
 
 @Service
 public class CsvToQuestionnaire {
+    private static final Logger logger = LoggerFactory.getLogger(CsvToQuestionnaire.class);
 
-    private static final String CSV_DIRECTORY_PATH = "src/main/resources/questionsInCsvFormat";
+    private static final String CSV_DIRECTORY_PATH = "Back-end/src/main/resources/questionsInCsvFormat/";
 
     private final QuestionRepository questionRepository;
 
@@ -25,9 +29,10 @@ public class CsvToQuestionnaire {
 
     public void saveQuestionsToDb() throws IOException {
         Map<String, List<QuestionDTO>> questionnaires = readQuestionnaires();
-
+        logger.info("Saving questions to the database...");
         for (List<QuestionDTO> questions : questionnaires.values()) {
             for (QuestionDTO questionDto : questions) {
+                logger.info("Saving question: " + questionDto.getQuestion());
                 Question question = convertToQuestionEntity(questionDto);
                 questionRepository.save(question);
             }
@@ -71,18 +76,27 @@ public class CsvToQuestionnaire {
     }
 
     private Map<String, List<QuestionDTO>> readQuestionnaires() throws IOException {
+        logger.info("Reading questions from CSV files...");
         File questionnaireDirectory = new File(CSV_DIRECTORY_PATH);
+        logger.info("Questionnaire directory: " + questionnaireDirectory.getAbsolutePath());
         Map<String, List<QuestionDTO>> questionnaires = new HashMap<>();
-
+        logger.info("Reading CSV files...");
         File[] csvFiles = questionnaireDirectory.listFiles();
-
+        logger.info("CSV files: " + Arrays.toString(csvFiles));
         if (csvFiles != null) {
+            logger.info("CSV files length: " + csvFiles.length);
             for (File csvFile : csvFiles) {
+                logger.info("Reading CSV file: " + csvFile.getName());
                 String language = csvFile.getName().replace(".csv", "");
                 List<QuestionDTO> questions = readQuestionsFromCsv(csvFile);
                 questionnaires.put(language, questions);
             }
+            logger.info("CSV files read successfully!");
         }
+        else {
+            logger.info("CSV files length: 0");
+        }
+        logger.info("Questionnaires read successfully!");
 
         return questionnaires;
     }
